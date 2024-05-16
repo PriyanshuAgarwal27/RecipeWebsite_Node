@@ -15,7 +15,7 @@ connectMongodb("mongodb://127.0.0.1:27017/recipe_data").then(() => {
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/recipes", recipeRouter);
+app.use("/recipes", restricteToLogedInUserOnly, recipeRouter);
 app.use("/users", userRouter);
 app.listen(PORT, () => {
   console.log("Server Started!");
