@@ -12,7 +12,7 @@ async function userLoginInfo(req, res) {
       .lean();
 
     if (!userInfo) {
-      return res.status(404).json({ error: "email id does not exist" });
+      return res.status(404).json({ error: "Email id does not exist" });
     }
     const secPassword = await bcrypt.compareSync(password, userInfo.password);
     if (secPassword) {
@@ -30,13 +30,13 @@ async function userSignUp(req, res) {
     const { name, email, password } = req.body;
     if (!name || !email || !password) {
       return res
-        .status(400)
+        .status(499)
         .json({ status: "Bad request", message: "All fields are required. " });
     }
     const existingUser = await userModel.findOne({ email }).lean();
     if (existingUser) {
       return res
-        .status(400)
+        .status(409)
         .json({ status: "Bad request", message: "Email already present" });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
