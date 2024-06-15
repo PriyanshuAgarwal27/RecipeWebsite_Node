@@ -1,10 +1,17 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const recipeRouter = require("./routes/RecipeRouter");
 const { userRouter } = require("./routes/UserRouter");
 const PORT = 8000;
 const { connectMongodb } = require("./connections/conectMogoDB");
 const cookieParser = require("cookie-parser");
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 const {
   restricteToLogedInUserOnly,
 } = require("./middlewares/userLoginMiddleWare");
