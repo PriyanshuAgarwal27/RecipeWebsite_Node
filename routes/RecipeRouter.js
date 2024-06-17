@@ -29,10 +29,7 @@ router
   .get(getAllRecipes)
   .post(upload.single("imageUrl"), createNewRecipe);
 
-router
-  .route("/:recipeId")
-  .get(getRecipeById)
-  .put(updateRecipeById)
-  .delete(deleteRecipeById);
+router.route("/:recipeId").get(getRecipeById).delete(deleteRecipeById);
+router.route("/:recipeId/update").put(updateRecipeById);
 
 module.exports = router;
