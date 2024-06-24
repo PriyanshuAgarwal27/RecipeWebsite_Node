@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 const app = express();
 const cors = require("cors");
 const recipeRouter = require("./routes/RecipeRouter");
@@ -16,7 +17,7 @@ app.use(
   })
 );
 
-connectMongodb("mongodb://127.0.0.1:27017/recipe_data").then(() => {
+connectMongodb(process.env.REACT_APP_MONGODB_API).then(() => {
   console.log("MongoDB connected");
 });
 
